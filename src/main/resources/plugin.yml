@@ -1,0 +1,5 @@
+name: ${rootProject.name}
+main: ${group}
+version: ${version}
+description: '前去github构建单独功能'
+website: 'https://github.com/FullIdle'

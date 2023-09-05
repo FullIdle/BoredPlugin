@@ -1,0 +1,5 @@
+name: BioPrompt
+main: ${group}
+version: ${version}
+description: 前去github构建其他功能
+website: 'https://github.com/FullIdle'

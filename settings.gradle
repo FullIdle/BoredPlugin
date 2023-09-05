@@ -1,0 +1,5 @@
+rootProject.name = 'BoredPlugin'
+include 'BioPrompt'
+include 'common'
+include 'Mc9yLogin'
+

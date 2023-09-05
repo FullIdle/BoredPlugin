@@ -1,0 +1,4 @@
+name: Mc9yLogin
+main: ${group}
+version: ${version}
+description: 利用selenium来进行登入的插件

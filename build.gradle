@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+}
+
+group = 'com.github.fullidle.boredplugin.Main'
+version = '1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(path: ':common')
+    implementation project(path: ':BioPrompt')
+    implementation project(path: ':Mc9yLogin')
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+ext {
+    isRootProject = false
+}
+
+tasks.register('isRoot'){
+    isRootProject = true
+}
+
+processResources {
+    setFilteringCharset("UTF-8")
+    expand project.properties
+}
+
+shadowJar{
+    mergeServiceFiles()
+    baseName = this.rootProject.name
+    version = this.version
+    classifier = null
+    manifest{
+        attributes 'Main-Class':this.group
+    }
+    doLast {
+        rootProject.setProperty('isRootProject',null)
+    }
+}
