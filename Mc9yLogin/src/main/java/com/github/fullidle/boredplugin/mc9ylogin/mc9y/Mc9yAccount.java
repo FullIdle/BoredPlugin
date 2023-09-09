@@ -105,7 +105,7 @@ public class Mc9yAccount {
 
     public static List<String> myArgs = Arrays.asList("--no-sandbox", "--disable-setuid-sandbox");
     @SneakyThrows
-    public boolean havePlugin(Mc9yPlugin plugin){
+    public Object[] havePlugin(Mc9yPlugin plugin){
         Page page = initializeBrowserPage();
         Browser browser = page.browser();
         page.goTo("https://bbs.mc9y.net/resources/"+plugin.getId());
@@ -113,7 +113,7 @@ public class Mc9yAccount {
         boolean b = Mc9yAccount.textContent(button).contains("下载");
         page.close();
         browser.close();
-        return b;
+        return new Object[]{b,page};
     }
 
     @SneakyThrows
