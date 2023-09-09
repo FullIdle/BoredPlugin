@@ -15,17 +15,23 @@
 - [ ] 更多功能
 
 ## 一些教程
+需要在plugin.yml添加依赖
 ### Mc9yLogin —— 判断账号是否有插件
 ```java
-Mc9yPlugin mc9yPlugin = new Mc9yPlugin();
-/*<设置插件的id用于验证>*/
-mc9yPlugin.setId(693);
-/*<判断登入的这个账号是否能下载这个插件(如果买了这个插件就会显示成下载，免费的插件永远为true)>*/
-boolean b = Main.myAccount.havePlugin(mc9yPlugin);
-/*<破解很容易的。。。>*/
-if (b) {
-    /*<验证通过>*/
-}else{
-    /*<验证未通过>*/
+public class Example extends JavaPlugin{
+    @Override
+    public void onLoad() {
+      Mc9yPlugin mc9yPlugin = new Mc9yPlugin();
+      /*<设置插件的id用于验证>*/
+      mc9yPlugin.setId(693);
+      /*<判断登入的这个账号是否能下载这个插件(如果买了这个插件就会显示成下载，免费的插件永远为true)>*/
+      boolean b = Main.myAccount.havePlugin(mc9yPlugin);
+      /*<破解很容易的。。。>*/
+      if (b) {
+        /*<验证通过>*/
+      }else{
+        /*<验证未通过>*/
+      }
+    }
 }
 ```
