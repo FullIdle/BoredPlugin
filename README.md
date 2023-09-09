@@ -34,12 +34,13 @@ public class Example extends JavaPlugin {
       /*<第二道验证>*/
       Page page = (Page)data[1];
       /*利用网页的信息进行判断，进行验证*/
-      page.close();
-      page.browser().close();
     } else {
       /*<验证未通过>*/
       getLogger().info("你没有资格用这个插件");
     }
+    /*这个是必要的!*/
+    page.close();
+    page.browser().close();
   }
 }
 ```

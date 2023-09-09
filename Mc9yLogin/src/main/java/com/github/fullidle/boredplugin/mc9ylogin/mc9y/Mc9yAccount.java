@@ -107,12 +107,9 @@ public class Mc9yAccount {
     @SneakyThrows
     public Object[] havePlugin(Mc9yPlugin plugin){
         Page page = initializeBrowserPage();
-        Browser browser = page.browser();
         page.goTo("https://bbs.mc9y.net/resources/"+plugin.getId());
         ElementHandle button = page.$("html>body>div>div>div>div>div>div>div>div>div>div>a:nth-of-type(1)");
         boolean b = Mc9yAccount.textContent(button).contains("下载");
-        page.close();
-        browser.close();
         return new Object[]{b,page};
     }
 
