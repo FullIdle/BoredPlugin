@@ -1,0 +1,6 @@
+name: CustomPapi
+main: ${group}
+version: ${version}
+description: 自定义变量,需要PlaceholderAPI
+depend: [PlaceholderAPI]
+author: [FullIdle]

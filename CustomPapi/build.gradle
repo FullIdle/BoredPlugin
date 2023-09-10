@@ -3,16 +3,20 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-group = 'com.github.fullidle.boredplugin.mc9ylogin.Main'
+group = 'com.github.fullidle.boredplugin.custompapi.Main'
 version = '1.0'
 
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
 }
 
 dependencies {
     implementation project(path: ':common')
+    compileOnly 'me.clip:placeholderapi:2.11.3'
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'
@@ -20,7 +24,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
-    implementation "io.github.fanyong920:jvppeteer:1.1.5"
 }
 
 test {

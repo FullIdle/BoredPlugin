@@ -15,7 +15,8 @@ public class CommonData {
     public enum SubPlugin {
         MC9YLOGIN("Mc9yLogin"),
         BIOPROMPT("BioPrompt"),
-        BOREDPLUGIN("BoredPlugin");
+        BOREDPLUGIN("BoredPlugin"),
+        CUSTOMPAPI("CustomPapi");
         private final String name;
         private final Map<String,File> files = new HashMap<>();
         SubPlugin(String name){

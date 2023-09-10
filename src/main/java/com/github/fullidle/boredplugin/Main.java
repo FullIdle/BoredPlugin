@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.jar.JarEntry;
 
 public class Main extends FiPlugin {
-    boolean enable = false;
     private final List<Class<? extends FiPlugin>> subPCls = new ArrayList<>();
     @SneakyThrows
     @Override

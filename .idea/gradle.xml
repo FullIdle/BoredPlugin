@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/BioPrompt" />
+            <option value="$PROJECT_DIR$/CustomPapi" />
             <option value="$PROJECT_DIR$/Mc9yLogin" />
             <option value="$PROJECT_DIR$/common" />
           </set>
