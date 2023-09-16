@@ -2,8 +2,8 @@
 ## 介绍
 一些无聊的插件，不知道能写什么
 ## 构建
-单独构建: ``` clean shadowJar ```
-完整都将: ```clean isRoot shadowJar```
+#单独构建: ``` clean :<SubProject>:shadowJar ```
+#完整构建: ```clean isRoot shadowJar```
 ## 功能
 
 - [x] BioPrompt —— 群系进入提示
