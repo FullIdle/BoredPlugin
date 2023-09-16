@@ -14,5 +14,5 @@ jobs:
         with:
           java-version: 17
 
-      - name: Build and test with Maven
+      - name: shadowJar
         run: ./gradlew shadowJar
