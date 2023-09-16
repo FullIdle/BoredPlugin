@@ -24,7 +24,9 @@ jobs:
           java-version: 17
 
       - name: BuildTools builds 1.20.1 core dependencies
-        run: java -jar BuildTools.jar --rev 1.20.1
+        run: |
+          cd librarys
+          java -jar BuildTools.jar --rev 1.20.1
 
   build:
     needs: buildSpigot
