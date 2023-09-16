@@ -1,11 +1,9 @@
 # BoredPlugin
 ## 介绍
 一些无聊的插件，不知道能写什么
-## 构建
-#单独构建: ``` clean :<SubProject>:shadowJar ```
-#完整构建: ```clean isRoot shadowJar```
+## 获得它
+前去Actions中运行任务构建最新版本
 ## 功能
-
 - [x] BioPrompt —— 群系进入提示
     - [x] Minecraft原版群系 —— 可翻译文件内设置翻译名
     - [ ] 宝可梦群系支持
@@ -53,3 +51,6 @@ player_level: 'player.getPlayer().getLevel();' #custompapi_player_level 由于�
 ### PokeClear —— 清理神奇宝贝
 插件原地址: <https://bbs.mc9y.net/resources/178>
 完全就是复刻过来的，所以教程直接去看原地址就好了
+## 构建
+#单独构建: ``` clean :<SubProject>:shadowJar ```
+#完整构建: ```clean isRoot shadowJar```
