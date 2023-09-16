@@ -3,6 +3,9 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
+sourceCompatibility = 1.8
+sourceCompatibility = 1.8
+
 group = 'com.github.fullidle.boredplugin.custompapi.Main'
 version = '1.0'
 
@@ -62,9 +65,8 @@ def renameAllFile(File folder){
 
 shadowJar {
     mergeServiceFiles()
-    baseName = archivesBaseName
-    version = this.version
-    classifier = null
+    archiveBaseName.set(archivesBaseName)
+    archiveVersion.set(version)
     manifest {
         attributes 'Main-Class': project.group
     }

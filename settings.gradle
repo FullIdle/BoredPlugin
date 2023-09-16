@@ -3,4 +3,4 @@ include 'BioPrompt'
 include 'common'
 include 'Mc9yLogin'
 include 'CustomPapi'
-
+include 'PokeClear'

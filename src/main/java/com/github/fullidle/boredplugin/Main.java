@@ -5,10 +5,10 @@ import com.github.fullidle.boredplugin.util.FileUtil;
 import com.github.fullidle.boredplugin.util.MethodUtil;
 import lombok.SneakyThrows;
 import lombok.val;
-import lombok.var;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,8 @@ public class Main extends FiPlugin {
     @SneakyThrows
     @Override
     public void onLoad() {
+        super.onLoad();
         saveDefaultConfig();
-
-        CommonData.setMainPlugin(this);
         getLogger().info("§a加载子插件数据中ing...");
         ArrayList<JarEntry> jarEntries = MethodUtil.getJarFileResourceName(getFile(),"com/github/fullidle/boredplugin",".class");
         for (JarEntry jarEntry : jarEntries) {
@@ -52,7 +51,14 @@ public class Main extends FiPlugin {
         for (Class<? extends JavaPlugin> subPcl : subPCls) {
             String methodName = subPcl.getAnnotation(SubPlugin.class).methodName();
             Method method = subPcl.getDeclaredMethod(methodName);
-            method.invoke(subPcl);
+            try {
+                getLogger().info("§3正在执行"+subPcl.getPackageName()+"的基础内容ing...");
+                method.invoke(subPcl);
+                getLogger().info("§3执行成功");
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                e.printStackTrace();
+                getLogger().info("§3执行失败");
+            }
         }
         /*<提示>*/
         getLogger().info("§b可以自己去§a"+getDescription().getWebsite()+"§b上将功能单独构建出来");
@@ -60,10 +66,10 @@ public class Main extends FiPlugin {
 
     @Override
     public void saveDefaultConfig() {
+        super.saveDefaultConfig();
         /*<清理所有数据>*/
         FileUtil.ALL_DATA.clear();
         /*<原插件config>*/
-        super.saveDefaultConfig();
         val jarFileResourceName = MethodUtil.getJarFileResourceName(getFile(),null,".yml");
         System.out.println("§3======="+jarFileResourceName.size());
         for (JarEntry jarEntry : jarFileResourceName) {

@@ -6,6 +6,9 @@ plugins {
 group = 'com.github.fullidle.boredplugin.bioprompt.Main'
 version = '1.0'
 
+sourceCompatibility = 1.8
+sourceCompatibility = 1.8
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -59,9 +62,8 @@ def renameAllFile(File folder){
 
 shadowJar {
     mergeServiceFiles()
-    baseName = archivesBaseName
-    version = this.version
-    classifier = null
+    archiveBaseName.set(archivesBaseName)
+    archiveVersion.set(version)
     manifest {
         attributes 'Main-Class': project.group
     }

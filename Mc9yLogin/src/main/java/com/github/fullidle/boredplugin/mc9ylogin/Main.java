@@ -14,7 +14,7 @@ public class Main extends FiPlugin {
     @SneakyThrows
     @Override
     public void onLoad() {
-        CommonData.setMainPlugin(this);
+        super.onLoad();
         register();
     }
 

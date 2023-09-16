@@ -2,6 +2,9 @@ plugins {
     id 'java'
 }
 
+sourceCompatibility = 1.8
+sourceCompatibility = 1.8
+
 group = 'com.github.fullidle.boredplugin'
 version = '1.0-SNAPSHOT'
 

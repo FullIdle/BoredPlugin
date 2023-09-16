@@ -13,6 +13,7 @@
     - [x] 账号详细信息
     - [x] 资源插件信息 —— 可判断账号是否可下载指定插件
 - [x] CustomPapi —— 自定义变量
+- [x] PokeClear —— 清理神奇宝贝
 - [ ] 更多功能
 
 ## 一些教程
@@ -49,3 +50,6 @@ public class Example extends JavaPlugin {
 player_name: 'player.getName();' #这个在游戏中的变量就是 custompapi_player_name
 player_level: 'player.getPlayer().getLevel();' #custompapi_player_level 由于传入的player是OfflinePlayer类型所以需要用一次getPlayer()
 ```
+### PokeClear —— 清理神奇宝贝
+插件原地址: <https://bbs.mc9y.net/resources/178>
+完全就是复刻过来的，所以教程直接去看原地址就好了

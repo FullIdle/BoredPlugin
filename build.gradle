@@ -1,7 +1,12 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
+    id 'eclipse'
+    id 'idea'
 }
+
+sourceCompatibility = 1.17
+sourceCompatibility = 1.17
 
 group = 'com.github.fullidle.boredplugin.Main'
 version = '1.0'
@@ -15,6 +20,7 @@ dependencies {
     implementation project(path: ':common')
     implementation project(path: ':BioPrompt')
     implementation project(path: ':Mc9yLogin')
+    implementation project(path: ':PokeClear')
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'
@@ -47,9 +53,8 @@ processResources {
 
 shadowJar{
     mergeServiceFiles()
-    baseName = this.rootProject.name
-    version = this.version
-    classifier = null
+    archiveBaseName.set(this.rootProject.name)
+    archiveVersion.set(this.version)
     manifest{
         attributes 'Main-Class':this.group
     }

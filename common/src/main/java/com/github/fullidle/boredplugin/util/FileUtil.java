@@ -13,7 +13,7 @@ import java.util.Map;
 @Getter
 public class FileUtil {
     public static Map<File,FileUtil> ALL_DATA = new HashMap<>();
-    private final FileConfiguration configuration;
+    private FileConfiguration configuration;
     private final File file;
 
     private FileUtil(File file){
@@ -33,16 +33,19 @@ public class FileUtil {
         ALL_DATA.put(file,this);
     }
 
-    public static FileUtil getInstance(File file,boolean isNew) {
-        if (isNew) {
-            ALL_DATA.remove(file);
+    public static FileUtil getInstance(File file, boolean isNew) {
+        if (isNew || !ALL_DATA.containsKey(file)) {
+            ALL_DATA.put(file, new FileUtil(file));
         }
-
-        return ALL_DATA.computeIfAbsent(file, FileUtil::new);
+        return ALL_DATA.get(file);
     }
 
     @SneakyThrows
     public void save() {
         this.configuration.save(this.file);
+    }
+
+    public void reload(){
+        this.configuration = YamlConfiguration.loadConfiguration(file);
     }
 }

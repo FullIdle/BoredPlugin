@@ -8,7 +8,12 @@ import java.io.File;
 import java.util.Map;
 
 public class FiPlugin extends JavaPlugin {
-    public FileUtil getConfig(CommonData.SubPlugin subPlugin,String configName) {
+    @Override
+    public void onLoad() {
+        CommonData.setMainPlugin(this);
+    }
+
+    public FileUtil getConfig(CommonData.SubPlugin subPlugin, String configName) {
         return FileUtil.getInstance(subPlugin.getFiles().get(configName), false);
     }
 

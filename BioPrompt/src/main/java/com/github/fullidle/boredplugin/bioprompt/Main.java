@@ -8,10 +8,6 @@ import org.bukkit.Bukkit;
 @SubPlugin(methodName = "register")
 public class Main extends FiPlugin {
     @Override
-    public void onLoad() {
-        CommonData.setMainPlugin(this);
-    }
-    @Override
     public void onEnable() {
         CommonData.getMainPlugin().saveDefaultConfig();
         register();

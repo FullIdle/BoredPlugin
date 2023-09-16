@@ -8,10 +8,6 @@ import javax.script.ScriptEngineManager;
 public class Main extends FiPlugin {
     public static ScriptEngineManager scriptEngineManager;
     @Override
-    public void onLoad() {
-        CommonData.setMainPlugin(this);
-    }
-    @Override
     public void onEnable() {
         CommonData.getMainPlugin().saveDefaultConfig();
         register();
