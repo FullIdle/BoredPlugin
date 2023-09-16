@@ -3,7 +3,7 @@ name: buildPackFile
 on: [push, pull_request]
 
 jobs:
-  buildSpigot:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,18 +28,10 @@ jobs:
           cd librarys
           java -jar BuildTools.jar --rev 1.20.1
 
-  build:
-    needs: buildSpigot
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
-        with:
-          java-version: 17
-
       - name: shadowJar
         run: |
-          dir
           ./gradlew shadowJar
+          ./gradlew :CustomPapi:shadowJar
+          ./gradlew :Mc9yLogin:shadowJar
+          ./gradlew :BioPrompt:shadowJar
+          ./gradlew :PokeClear:shadowJar
