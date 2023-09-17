@@ -6,20 +6,31 @@ import com.github.fullidle.boredplugin.data.CommonData;
 import com.github.fullidle.boredplugin.util.FileUtil;
 import com.pixelmonmod.pixelmon.api.pokemon.species.Species;
 import com.pixelmonmod.pixelmon.api.registries.PixelmonSpecies;
+import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
-import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.Plugin;
+
+import java.lang.reflect.Constructor;
 
 import static com.github.fullidle.boredplugin.pokeclear.Data.*;
 
 @SubPlugin(methodName = "register")
 public class Main extends FiPlugin {
+    public static final String cmdName = "pokeclear";
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        registerCommand(cmdName);
+    }
+
     public void onEnable() {
-        saveDefaultConfig();
         register();
     }
     public static void register(){
         FiPlugin plugin = CommonData.getMainPlugin();
+        plugin.saveDefaultConfig();
         FileUtil fileUtil = plugin.getConfig(CommonData.SubPlugin.POKECLEAR, "config.yml");
         FileConfiguration config = fileUtil.getConfiguration();
         world = config.getStringList("world");
@@ -30,8 +41,9 @@ public class Main extends FiPlugin {
             waitClear = new WaitClear(CommonData.getMainPlugin());
         }
 
-        CMD cmd = new CMD();
-        cmd.register(new SimpleCommandMap(plugin.getServer()));
+        PluginCommand command = plugin.getCommand(cmdName);
+        CMD executor = new CMD();
+        command.setExecutor(executor);
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, AD::new);
         for (Species species : PixelmonSpecies.getAll()) {
@@ -41,5 +53,12 @@ public class Main extends FiPlugin {
                 legendaries.add(species.getName());
             }
         }
+    }
+
+    @SneakyThrows
+    public static PluginCommand registerCommand(String name) {
+        Constructor<PluginCommand> constructor = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
+        constructor.setAccessible(true);
+        return constructor.newInstance(name, CommonData.getMainPlugin());
     }
 }

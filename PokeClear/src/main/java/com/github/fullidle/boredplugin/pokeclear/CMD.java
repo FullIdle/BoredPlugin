@@ -7,22 +7,17 @@ import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 
-import java.util.ArrayList;
-
 import static com.github.fullidle.boredplugin.pokeclear.Data.*;
 
-public class CMD extends Command {
-    public CMD(){
-        super("pokeclear","pokeclear",null,new ArrayList<>());
-    }
-
+public class CMD implements CommandExecutor {
     @Override
-    public boolean execute(CommandSender sender,String label,String[] args) {
+    public boolean onCommand(CommandSender sender,Command cmd,String label,String[] args) {
         FiPlugin plugin = CommonData.getMainPlugin();
         if (sender.isOp() && args.length == 1 && args[0].equalsIgnoreCase("reload")) {
             FileUtil fileUtil = plugin.getConfig(CommonData.SubPlugin.POKECLEAR, "config.yml");

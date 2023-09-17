@@ -20,10 +20,12 @@ public class FiPlugin extends JavaPlugin {
     @Override
     public void saveDefaultConfig() {
         super.saveDefaultConfig();
-        File file = new File(CommonData.getMainPlugin().getDataFolder(), "config.yml");
         String name = CommonData.getMainPlugin().getName().toUpperCase();
-        Map<String, File> files = CommonData.SubPlugin.valueOf(name).getFiles();
-        files.remove("config.yml");
-        files.put("config.yml",file);
+        File file = new File(CommonData.getMainPlugin().getDataFolder(), "config.yml");
+        if (!name.equals(CommonData.SubPlugin.BOREDPLUGIN.name())){
+            Map<String, File> files = CommonData.SubPlugin.valueOf(name).getFiles();
+            files.remove("config.yml");
+            files.put("config.yml",file);
+        }
     }
 }
