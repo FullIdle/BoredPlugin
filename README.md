@@ -6,7 +6,7 @@
 ## 功能
 - [x] BioPrompt —— 群系进入提示
     - [x] Minecraft原版群系 —— 可翻译文件内设置翻译名
-    - [ ] 宝可梦群系支持
+    - [x] 宝可梦群系支持 —— (支持forge1.12.2)
 - [x] Mc9yLogin —— 九域登入
     - [x] 账号详细信息
     - [x] 资源插件信息 —— 可判断账号是否可下载指定插件
@@ -47,6 +47,12 @@ public class Example extends JavaPlugin {
 ```yaml
 player_name: 'player.getName();' #这个在游戏中的变量就是 custompapi_player_name
 player_level: 'player.getPlayer().getLevel();' #custompapi_player_level 由于传入的player是OfflinePlayer类型所以需要用一次getPlayer()
+```
+### 宝可梦群系支持 —— (支持forge1.12.2)
+配置未被翻译的群系
+```yaml
+{群系未翻译名(就是你屏幕弹出的名字)}: {翻译名}
+#{}-》》花括号是不需要的!
 ```
 ### PokeClear —— 清理神奇宝贝
 插件原地址: <https://bbs.mc9y.net/resources/178>
