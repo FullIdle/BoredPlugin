@@ -48,7 +48,7 @@ public class Example extends JavaPlugin {
 player_name: 'player.getName();' #这个在游戏中的变量就是 custompapi_player_name
 player_level: 'player.getPlayer().getLevel();' #custompapi_player_level 由于传入的player是OfflinePlayer类型所以需要用一次getPlayer()
 ```
-### 宝可梦群系支持 —— (支持forge1.12.2)
+### BioPrompt —— 群系进入提示
 配置未被翻译的群系
 ```yaml
 {群系未翻译名(就是你屏幕弹出的名字)}: {翻译名}
