@@ -1,5 +1,10 @@
 format: '&3&l{biome}'
 time: 3
+worlds:
+#配置要显示的世界名字，后面的值如果是false则用小提示防止
+  - 'world:true'
+  - 'DIM-1:false'
+  - 'DIM1:false'
 translateName:
   OCEAN: 海洋
   PLAINS: 平原
