@@ -17,7 +17,6 @@ import java.util.Map;
 import static com.github.fullidle.boredplugin.pokeclear.Data.*;
 
 public class NormalClear implements Listener {
-    FiPlugin INSTANCE;
     int time;
     boolean le;
     boolean ul;
@@ -27,7 +26,6 @@ public class NormalClear implements Listener {
     Map<Integer, String> msg = new HashMap();
 
     public NormalClear(FiPlugin INSTANCE) {
-        this.INSTANCE = INSTANCE;
         INSTANCE.getServer().getPluginManager().registerEvents(this, INSTANCE);
         load();
         INSTANCE.getServer().getScheduler().scheduleSyncRepeatingTask(INSTANCE, () -> {
@@ -45,7 +43,7 @@ public class NormalClear implements Listener {
     }
 
     public void load() {
-        FileUtil fileUtil = this.INSTANCE.getConfig(CommonData.SubPlugin.POKECLEAR, "config.yml");
+        FileUtil fileUtil = CommonData.getMainPlugin().getConfig(CommonData.SubPlugin.POKECLEAR, "config.yml");
         FileConfiguration config = fileUtil.getConfiguration();
         this.time = config.getInt("normal.time");
         this.le = config.getBoolean("normal.le");

@@ -46,10 +46,10 @@ public class WaitClear implements Listener {
                 if (!this.shiny && ep.getPokemon().isShiny()) {
                     return;
                 }
-                if (!this.le && legendaries.contains(ep.getSpecies().getName())) {
+                if (!this.le && legendaries.contains(ep.getPokemon().getSpecies().getName())) {
                     return;
                 }
-                if ((!this.ul && ultrabeasts.contains(ep.getSpecies().getName())) || unClearDexID.contains(ep.getPokemon().getSpecies().getDex())) {
+                if ((!this.ul && ultrabeasts.contains(ep.getPokemon().getSpecies().getName())) || unClearDexID.contains(ep.getPokemon().getSpecies().getDex())) {
                     return;
                 }
                 this.waitEntity.put(ep.getBukkitEntity().getUniqueId(),System.currentTimeMillis() + (this.wait * 1000L));
@@ -112,7 +112,7 @@ public class WaitClear implements Listener {
         config.getConfigurationSection("wait.message").getKeys(false).forEach(it -> {
             try {
                 this.msg.put(Integer.valueOf(Integer.parseInt(it)), config.getString("wait.message." + it).replace("&", "§"));
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         });
     }
