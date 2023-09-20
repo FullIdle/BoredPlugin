@@ -1,0 +1,4 @@
+name: FIFix
+main: ${group}
+version: ${version}
+description: 一些修复
