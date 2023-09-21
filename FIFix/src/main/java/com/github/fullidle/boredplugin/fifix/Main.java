@@ -1,12 +1,19 @@
 package com.github.fullidle.boredplugin.fifix;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import com.github.fullidle.boredplugin.FiPlugin;
+import com.github.fullidle.boredplugin.SubPlugin;
+import com.github.fullidle.boredplugin.data.CommonData;
 
-public class Main extends JavaPlugin {
-    public static Main main;
+@SubPlugin(methodName = "register")
+public class Main extends FiPlugin {
+    public static FiPlugin main = CommonData.getMainPlugin();
     @Override
     public void onEnable() {
-        main =this;
-        this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+        register();
+    }
+
+    public static void register(){
+        main.saveDefaultConfig();
+        main.getServer().getPluginManager().registerEvents(new PlayerListener(), main);
     }
 }
