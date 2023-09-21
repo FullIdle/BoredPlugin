@@ -8,7 +8,7 @@ import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
-@SubPlugin(methodName = "register")
+@SubPlugin(load = "register")
 public class Main extends FiPlugin {
     private static Mc9yAccount myAccount;
     @SneakyThrows

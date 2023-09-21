@@ -4,7 +4,7 @@ import com.github.fullidle.boredplugin.FiPlugin;
 import com.github.fullidle.boredplugin.SubPlugin;
 import com.github.fullidle.boredplugin.data.CommonData;
 
-@SubPlugin(methodName = "register")
+@SubPlugin(enable = "register")
 public class Main extends FiPlugin {
     public static FiPlugin main = CommonData.getMainPlugin();
     @Override

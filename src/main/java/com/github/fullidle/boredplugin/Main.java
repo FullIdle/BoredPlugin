@@ -3,20 +3,18 @@ package com.github.fullidle.boredplugin;
 import com.github.fullidle.boredplugin.data.CommonData;
 import com.github.fullidle.boredplugin.util.FileUtil;
 import com.github.fullidle.boredplugin.util.MethodUtil;
+import com.github.fullidle.boredplugin.util.SubPluginUtil;
 import lombok.SneakyThrows;
 import lombok.val;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.jar.JarEntry;
 
 public class Main extends FiPlugin {
-    private final List<Class<? extends FiPlugin>> subPCls = new ArrayList<>();
+    private final List<SubPluginUtil> subPluginUtils = new ArrayList<>();
     @SneakyThrows
     @Override
     public void onLoad() {
@@ -30,9 +28,15 @@ public class Main extends FiPlugin {
             if (!className.equalsIgnoreCase("module-info")) {
                 Class<?> aClass = Class.forName(className);
                 if (aClass.isAnnotationPresent(SubPlugin.class)) {
-                    subPCls.add((Class<? extends FiPlugin>) aClass);
+                    Class<? extends FiPlugin> cla = (Class<? extends FiPlugin>) aClass;
+                    SubPlugin subPlugin = cla.getAnnotation(SubPlugin.class);
+                    subPluginUtils.add(new SubPluginUtil(subPlugin,cla));
                 }
             }
+        }
+
+        for (SubPluginUtil util : subPluginUtils) {
+            util.onLoad();
         }
     }
     @SneakyThrows
@@ -47,18 +51,9 @@ public class Main extends FiPlugin {
             System.out.println(entry.getKey());
             System.out.println(entry.getValue().getName());
         }
-        /*<子模块的注册>*/
-        for (Class<? extends JavaPlugin> subPcl : subPCls) {
-            String methodName = subPcl.getAnnotation(SubPlugin.class).methodName();
-            Method method = subPcl.getDeclaredMethod(methodName);
-            try {
-                getLogger().info("§3正在执行"+subPcl.getPackageName()+"的基础内容ing...");
-                method.invoke(subPcl);
-                getLogger().info("§3执行成功");
-            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                e.printStackTrace();
-                getLogger().info("§3执行失败");
-            }
+        /*执行enable()*/
+        for (SubPluginUtil util : subPluginUtils) {
+            util.onEnable();
         }
         /*<提示>*/
         getLogger().info("§b可以自己去§a"+getDescription().getWebsite()+"§b上将功能单独构建出来");
@@ -101,6 +96,14 @@ public class Main extends FiPlugin {
                 CommonData.SubPlugin.BOREDPLUGIN.getFiles().put(name,file);
             }
             FileUtil.getInstance(file,true);
+        }
+    }
+
+    @Override
+    public void onDisable() {
+        super.onDisable();
+        for (SubPluginUtil util : subPluginUtils) {
+            util.onDisable();
         }
     }
 }

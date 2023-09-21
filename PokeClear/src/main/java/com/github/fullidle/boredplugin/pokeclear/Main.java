@@ -11,14 +11,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import static com.github.fullidle.boredplugin.pokeclear.Data.*;
 
-@SubPlugin(methodName = "register")
+@SubPlugin(enable = "register")
 public class Main extends FiPlugin {
     public static String cmdName = "pokeclear";
-    @Override
-    public void onLoad() {
-        super.onLoad();
-    }
-
     public void onEnable() {
         register();
     }
