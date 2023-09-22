@@ -23,7 +23,10 @@ public class Cmd implements CommandExecutor {
         }
         String cmd = builder.toString();
         for (Player player : Bukkit.getOnlinePlayers()) {
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), PlaceholderAPI.setPlaceholders(player,cmd));
+            boolean op = player.isOp();
+            player.setOp(true);
+            Bukkit.dispatchCommand(player, PlaceholderAPI.setPlaceholders(player,cmd));
+            player.setOp(op);
         }
         return false;
     }
