@@ -6,13 +6,14 @@ import com.github.fullidle.boredplugin.data.CommonData;
 
 @SubPlugin(enable = "register")
 public class Main extends FiPlugin {
-    public static FiPlugin main = CommonData.getMainPlugin();
+    public static FiPlugin main;
     @Override
     public void onEnable() {
         register();
     }
 
     public static void register(){
+        main = CommonData.getMainPlugin();
         main.saveDefaultConfig();
         main.getServer().getPluginManager().registerEvents(new PlayerListener(), main);
     }

@@ -13,6 +13,7 @@ public class CommonData {
     @Getter @Setter private static FiPlugin mainPlugin;
     @Getter
     public enum SubPlugin {
+        FIFIX("FIFix"),
         MC9YLOGIN("Mc9yLogin"),
         BIOPROMPT("BioPrompt"),
         BOREDPLUGIN("BoredPlugin"),

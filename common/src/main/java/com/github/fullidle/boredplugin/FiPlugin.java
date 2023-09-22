@@ -49,9 +49,4 @@ public class FiPlugin extends JavaPlugin {
             files.put("config.yml",file);
         }
     }
-
-    @Override
-    public void onDisable() {
-        super.onDisable();
-    }
 }
