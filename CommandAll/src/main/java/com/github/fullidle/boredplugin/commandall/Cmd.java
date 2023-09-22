@@ -1,4 +1,4 @@
-package com.github.fullidle.boredplugin.commandall.Main;
+package com.github.fullidle.boredplugin.commandall;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;

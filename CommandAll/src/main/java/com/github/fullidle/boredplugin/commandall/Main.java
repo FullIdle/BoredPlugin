@@ -1,4 +1,4 @@
-package com.github.fullidle.boredplugin.commandall.Main;
+package com.github.fullidle.boredplugin.commandall;
 
 import com.github.fullidle.boredplugin.FiPlugin;
 import com.github.fullidle.boredplugin.SubPlugin;
@@ -11,7 +11,7 @@ import java.util.Collections;
 
 @SubPlugin(enable = "enable")
 public class Main extends FiPlugin {
-    public static FiPlugin main = CommonData.getMainPlugin();
+    public static FiPlugin main;
     @Override
     public void onEnable() {
         enable();
@@ -19,7 +19,10 @@ public class Main extends FiPlugin {
     }
 
     public static void enable(){
+        main = CommonData.getMainPlugin();
+/*
         main.saveDefaultConfig();
+*/
         main.onRegisterCommand(main,"commandall");
         PluginCommand cmd = main.getCommand("commandall");
         cmd.setAliases(Collections.singletonList("cmdall"));

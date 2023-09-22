@@ -2,4 +2,4 @@ name: CommandAll
 main: ${group}
 version: ${version}
 depend:
-  - PlaceHolder
+  - PlaceholderAPI
