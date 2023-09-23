@@ -18,7 +18,8 @@
   - [x] 无技能巢穴对战(与上面有所不同,处理方式不同)
 - [x] CommandAll —— 为所有在线玩家执行命令(支持占位符)
 - [ ] 更多功能
-
+## 一些无聊的示例
+<https://github.com/FullIdle/BoredPlugin/tree/master/SomeExample>
 ## 一些教程
 需要在plugin.yml添加依赖
 ### Mc9yLogin —— 判断账号是否有插件

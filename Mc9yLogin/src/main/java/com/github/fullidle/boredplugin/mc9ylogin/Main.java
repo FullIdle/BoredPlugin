@@ -4,12 +4,14 @@ import com.github.fullidle.boredplugin.FiPlugin;
 import com.github.fullidle.boredplugin.SubPlugin;
 import com.github.fullidle.boredplugin.data.CommonData;
 import com.github.fullidle.boredplugin.mc9ylogin.mc9y.Mc9yAccount;
+import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
 @SubPlugin(load = "register")
 public class Main extends FiPlugin {
+    @Getter
     private static Mc9yAccount myAccount;
     @SneakyThrows
     @Override
