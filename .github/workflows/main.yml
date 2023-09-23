@@ -35,6 +35,8 @@ jobs:
           ./gradlew :Mc9yLogin:shadowJar
           ./gradlew :BioPrompt:shadowJar
           ./gradlew :PokeClear:shadowJar
+          ./gradlew :FIFix:shadowJar
+          ./gradlew :CommandAll:shadowJar
 
       - name: uploadFiles
         uses: actions/upload-artifact@v3
@@ -46,3 +48,5 @@ jobs:
             CustomPapi/build/libs/*.jar
             Mc9yLogin/build/libs/*.jar
             PokeClear/build/libs/*.jar
+            FIFix/build/libs/*.jar
+            CommandAll/build/libs/*.jar

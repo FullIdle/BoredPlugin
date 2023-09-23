@@ -21,6 +21,9 @@ dependencies {
     implementation project(path: ':BioPrompt')
     implementation project(path: ':Mc9yLogin')
     implementation project(path: ':PokeClear')
+    implementation project(path: ':FIFix')
+    implementation project(path: ':CustomPapi')
+    implementation project(path: ':CommandAll')
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'
