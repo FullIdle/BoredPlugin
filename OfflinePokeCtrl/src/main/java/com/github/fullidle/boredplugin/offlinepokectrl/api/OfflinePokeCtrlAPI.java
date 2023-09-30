@@ -32,7 +32,6 @@ public class OfflinePokeCtrlAPI{
         return null;
     }
 
-
     public static OfflineBattleCtrl startBattle(BattleParticipant[] team1, BattleParticipant[] team2, BattleRules rules) {
         boolean b = true;
         for (BattleParticipant bp : team1) {
@@ -41,7 +40,7 @@ public class OfflinePokeCtrlAPI{
                 break;
             }
         }
-        if (!b) {
+        if (b) {
             for (BattleParticipant bp : team2) {
                 if (bp instanceof OfflineParticipant) {
                     b = false;

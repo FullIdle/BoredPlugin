@@ -20,7 +20,9 @@ public class OfflineAI extends BattleAIBase {
 
     @Override
     public MoveChoice getNextMove(PixelmonWrapper pixelmonWrapper) {
-        return ToBeUsedMoveChoice;
+        MoveChoice cho = ToBeUsedMoveChoice;
+        ToBeUsedMoveChoice = null;
+        return cho;
     }
 
     @Override
