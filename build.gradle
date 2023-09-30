@@ -24,6 +24,7 @@ dependencies {
     implementation project(path: ':FIFix')
     implementation project(path: ':CustomPapi')
     implementation project(path: ':CommandAll')
+    implementation project(path: ':OfflinePokeCtrl')
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'

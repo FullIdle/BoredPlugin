@@ -11,7 +11,7 @@ import org.bukkit.World;
 import java.util.HashMap;
 import java.util.Map;
 
-@SubPlugin(methodName = "register")
+@SubPlugin(enable = "register")
 public class Main extends FiPlugin {
     public static boolean hasForge;
     public static Map<World,Boolean> worldSet = new HashMap<>();

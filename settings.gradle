@@ -6,4 +6,5 @@ include 'CustomPapi'
 include 'PokeClear'
 include 'FIFix'
 include 'CommandAll'
+include 'OfflinePokeCtrl'
 
