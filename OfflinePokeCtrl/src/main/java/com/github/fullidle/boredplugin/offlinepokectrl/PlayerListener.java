@@ -8,6 +8,9 @@ import com.github.fullidle.boredplugin.offlinepokectrl.api.OfflinePokeCtrlAPI;
 import com.pixelmonmod.pixelmon.api.events.battles.SetBattleAIEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import static com.github.fullidle.boredplugin.offlinepokectrl.Main.plugin;
 
 public class PlayerListener implements Listener {
     @EventHandler
@@ -22,6 +25,30 @@ public class PlayerListener implements Listener {
                 OfflineBattleCtrl bc = (OfflineBattleCtrl) e.bc;
                 if (!OfflinePokeCtrlAPI.list.contains(bc)) {
                     OfflinePokeCtrlAPI.list.add(bc);
+                    BukkitRunnable runnable = new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            if (!bc.battleEnded){
+                                for (OfflineParticipant op : bc.getOfflinePlayers()) {
+                                    if (op.WaitForTheNextUUIDToBeSelected){
+                                        op.wait = op.getBattleAI().getUUIDToBeSelected() == null;
+                                        if (!op.wait){
+                                            op.WaitForTheNextUUIDToBeSelected = false;
+                                        }
+                                    }else{
+                                        op.wait = op.getBattleAI().getToBeUsedMoveChoice() == null;
+                                    }
+                                }
+                            }else{
+                                OfflinePokeCtrlAPI.list.remove(bc);
+                                for (OfflineParticipant op : bc.getOfflinePlayers()) {
+                                    op.getTrainer().onRemovedFromWorld();
+                                }
+                                this.cancel();
+                            }
+                        }
+                    };
+                    runnable.runTaskTimer(plugin,0,0);
                 }
             }
         }

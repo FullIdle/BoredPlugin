@@ -2,6 +2,7 @@ package com.github.fullidle.boredplugin.offlinepokectrl;
 
 import com.github.fullidle.boredplugin.FiPlugin;
 import com.github.fullidle.boredplugin.SubPlugin;
+import com.github.fullidle.boredplugin.offlinepokectrl.command.SelectNextPokeCmd;
 import com.github.fullidle.boredplugin.offlinepokectrl.command.SelectSkillsCmd;
 import com.github.fullidle.boredplugin.offlinepokectrl.command.StartBattleCmd;
 
@@ -20,8 +21,9 @@ public class Main extends FiPlugin {
         Main.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(new PlayerListener(),plugin);
 
-        plugin.onRegisterCommand(plugin,"startbattletest","selectskilltest");
+        plugin.onRegisterCommand(plugin,"startbattletest","selectskilltest","selectnextpoketest");
         plugin.getCommand("startbattletest").setExecutor(new StartBattleCmd());
         plugin.getCommand("selectskilltest").setExecutor(new SelectSkillsCmd());
+        plugin.getCommand("selectnextpoketest").setExecutor(new SelectNextPokeCmd());
     }
 }

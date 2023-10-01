@@ -2,16 +2,18 @@ package com.github.fullidle.boredplugin.offlinepokectrl.command;
 
 import com.github.fullidle.boredplugin.offlinepokectrl.api.OfflineParticipant;
 import com.github.fullidle.boredplugin.offlinepokectrl.api.OfflinePokeCtrlAPI;
+import com.github.fullidle.boredplugin.offlinepokectrl.api.OfflineTrainer;
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.battles.controller.participants.PlayerParticipant;
-import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import com.pixelmonmod.pixelmon.storage.PlayerPartyStorage;
+import net.minecraft.nbt.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
 public class StartBattleCmd implements CommandExecutor {
     @Override
@@ -47,13 +49,15 @@ public class StartBattleCmd implements CommandExecutor {
         }
         PlayerPartyStorage pps = Pixelmon.storageManager.getParty(player.getUniqueId());
         PlayerPartyStorage pps2 = Pixelmon.storageManager.getParty(player2.getUniqueId());
-        Pokemon pokemon = pps.get(slot - 1);
-        Pokemon pokemon2 = pps2.get(slot2 - 1);
-        EntityPixelmon ep = pokemon.getOrSpawnPixelmon(pps2.getPlayer());
-        EntityPixelmon ep2 = pokemon2.getOrSpawnPixelmon(pps2.getPlayer());
-        OfflineParticipant olp = new OfflineParticipant(player,ep);
-        PlayerParticipant pp = new PlayerParticipant(pps2.getPlayer(),ep2);
-        OfflinePokeCtrlAPI.startBattle(olp,pp);
+        OfflineTrainer trainer = new OfflineTrainer(player, ((CraftWorld) player2.getPlayer().getWorld()).getHandle());
+
+        Pokemon pokemon2 = pps2.get(slot2-1);
+
+        trainer.getPokemonStorage().readFromNBT(pps.writeToNBT(new NBTTagCompound()));
+        OfflineParticipant op = new OfflineParticipant(trainer,trainer.getPokemonStorage().get(slot-1).getPosition().order+1);
+        PlayerParticipant pp = new PlayerParticipant(pps2.getPlayer(),pps2.getTeam(),pps2.getTeam().indexOf(pokemon2)+1);
+
+        OfflinePokeCtrlAPI.startBattle(op,pp);
         return false;
     }
 }

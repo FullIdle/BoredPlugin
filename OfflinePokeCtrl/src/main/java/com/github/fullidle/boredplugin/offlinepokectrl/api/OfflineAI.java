@@ -1,7 +1,7 @@
 package com.github.fullidle.boredplugin.offlinepokectrl.api;
 
-import com.pixelmonmod.pixelmon.battles.controller.ai.BattleAIBase;
 import com.pixelmonmod.pixelmon.battles.controller.ai.MoveChoice;
+import com.pixelmonmod.pixelmon.battles.controller.ai.TacticalAI;
 import com.pixelmonmod.pixelmon.battles.controller.participants.BattleParticipant;
 import com.pixelmonmod.pixelmon.battles.controller.participants.PixelmonWrapper;
 import lombok.Getter;
@@ -10,10 +10,11 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class OfflineAI extends BattleAIBase {
-    @Setter
-    @Getter
+@Getter
+@Setter
+public class OfflineAI extends TacticalAI {
     private MoveChoice ToBeUsedMoveChoice;
+    private UUID UUIDToBeSelected;
     public OfflineAI(BattleParticipant participant) {
         super(participant);
     }
@@ -27,7 +28,9 @@ public class OfflineAI extends BattleAIBase {
 
     @Override
     public UUID getNextSwitch(PixelmonWrapper pixelmonWrapper) {
-        return null;
+        UUID uuid = UUIDToBeSelected;
+        UUIDToBeSelected = null;
+        return uuid;
     }
 
     public ArrayList<MoveChoice> getACho(PixelmonWrapper pw) {

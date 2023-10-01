@@ -1,24 +1,31 @@
 package com.github.fullidle.boredplugin.offlinepokectrl.api;
 
-import com.pixelmonmod.pixelmon.battles.controller.participants.WildPixelmonParticipant;
-import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
-import org.bukkit.OfflinePlayer;
+import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
+import com.pixelmonmod.pixelmon.battles.controller.participants.TrainerParticipant;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class OfflineParticipant extends WildPixelmonParticipant {
-    OfflinePlayer player;
+import java.util.List;
 
-    public OfflineParticipant(OfflinePlayer player,boolean isGrassBattleParticipant, EntityPixelmon... pixelmon) {
-        super(isGrassBattleParticipant, pixelmon);
-        this.player = player;
+public class OfflineParticipant extends TrainerParticipant {
+    public boolean WaitForTheNextUUIDToBeSelected = false;
+    public OfflineParticipant(OfflineTrainer trainer, EntityPlayer opponent, int numPokemon) throws IllegalStateException {
+        super(trainer, opponent, numPokemon);
     }
 
-    public OfflineParticipant(OfflinePlayer player,EntityPixelmon... pixelmon) {
-        super(pixelmon);
-        this.player = player;
+    public OfflineParticipant(OfflineTrainer trainer, EntityPlayer opponent, int numPokemon, List<Pokemon> teamSelection) throws IllegalStateException {
+        super(trainer, opponent, numPokemon, teamSelection);
+    }
+
+    public OfflineParticipant(OfflineTrainer trainer, int numPokemon) throws IllegalStateException {
+        super(trainer, numPokemon);
     }
 
     @Override
     public OfflineAI getBattleAI() {
         return (OfflineAI) super.getBattleAI();
+    }
+
+    public OfflineTrainer getTrainer(){
+        return (OfflineTrainer) this.trainer;
     }
 }

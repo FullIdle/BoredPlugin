@@ -18,10 +18,26 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import org.bukkit.OfflinePlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.UUID;
 
 public class OfflinePokeCtrlAPI{
     public static ArrayList<OfflineBattleCtrl> list = new ArrayList<>();
+    
+    public static void switchPokemon(OfflineParticipant op, UUID uuid){
+        op.getBattleAI().setUUIDToBeSelected(uuid);
+        op.WaitForTheNextUUIDToBeSelected = true;
+    }
+    
+    public static ArrayList<PixelmonWrapper> getCanSwitchPokemonList(OfflineParticipant op,PixelmonWrapper... beingControlled){
+        ArrayList<PixelmonWrapper> clone = (ArrayList<PixelmonWrapper>) op.getTeamPokemon().clone();
+        if (beingControlled != null) {
+            clone.removeAll(Collections.singleton(beingControlled));
+        }
+        clone.removeIf(wrapper -> wrapper.getHealth() == 0);
+        return clone;
+    }
 
     public static OfflineBattleCtrl getOfflineBattleCtrl(OfflinePlayer player) {
         for (OfflineBattleCtrl ctrl : list) {
