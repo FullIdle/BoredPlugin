@@ -37,6 +37,7 @@ jobs:
           ./gradlew :PokeClear:shadowJar
           ./gradlew :FIFix:shadowJar
           ./gradlew :CommandAll:shadowJar
+          ./gradlew :OfflinePokeCtrl:shadowJar
 
       - name: uploadFiles
         uses: actions/upload-artifact@v3
@@ -50,3 +51,4 @@ jobs:
             PokeClear/build/libs/*.jar
             FIFix/build/libs/*.jar
             CommandAll/build/libs/*.jar
+            OfflinePokeCtrl/build/libs/*.jar
