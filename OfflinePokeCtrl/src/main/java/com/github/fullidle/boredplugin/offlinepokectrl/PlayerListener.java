@@ -30,14 +30,7 @@ public class PlayerListener implements Listener {
                         public void run() {
                             if (!bc.battleEnded){
                                 for (OfflineParticipant op : bc.getOfflinePlayers()) {
-                                    if (op.WaitForTheNextUUIDToBeSelected){
-                                        op.wait = op.getBattleAI().getUUIDToBeSelected() == null;
-                                        if (!op.wait){
-                                            op.WaitForTheNextUUIDToBeSelected = false;
-                                        }
-                                    }else{
-                                        op.wait = op.getBattleAI().getToBeUsedMoveChoice() == null;
-                                    }
+                                    op.wait = op.getBattleAI().getToBeUsedMoveChoice() == null;
                                 }
                             }else{
                                 OfflinePokeCtrlAPI.list.remove(bc);

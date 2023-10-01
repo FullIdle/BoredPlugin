@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import java.util.List;
 
 public class OfflineParticipant extends TrainerParticipant {
-    public boolean WaitForTheNextUUIDToBeSelected = false;
     public OfflineParticipant(OfflineTrainer trainer, EntityPlayer opponent, int numPokemon) throws IllegalStateException {
         super(trainer, opponent, numPokemon);
     }

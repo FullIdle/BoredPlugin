@@ -18,27 +18,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import org.bukkit.OfflinePlayer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.UUID;
 
 public class OfflinePokeCtrlAPI{
     public static ArrayList<OfflineBattleCtrl> list = new ArrayList<>();
-    
-    public static void switchPokemon(OfflineParticipant op, UUID uuid){
-        op.getBattleAI().setUUIDToBeSelected(uuid);
-        op.WaitForTheNextUUIDToBeSelected = true;
-    }
-    
-    public static ArrayList<PixelmonWrapper> getCanSwitchPokemonList(OfflineParticipant op,PixelmonWrapper... beingControlled){
-        ArrayList<PixelmonWrapper> clone = (ArrayList<PixelmonWrapper>) op.getTeamPokemon().clone();
-        if (beingControlled != null) {
-            clone.removeAll(Collections.singleton(beingControlled));
-        }
-        clone.removeIf(wrapper -> wrapper.getHealth() == 0);
-        return clone;
-    }
-
     public static OfflineBattleCtrl getOfflineBattleCtrl(OfflinePlayer player) {
         for (OfflineBattleCtrl ctrl : list) {
             if (ctrl.getOfflinePlayer(player.getName()) != null) {
@@ -106,11 +89,10 @@ public class OfflinePokeCtrlAPI{
             BattleRegistry.registerBattle(battle);
 
             for (PlayerParticipant playerParticipant : battle.getPlayers()) {
-                BattleParticipant p = playerParticipant;
-                EntityPlayerMP player = (EntityPlayerMP) p.getEntity();
+                EntityPlayerMP player = (EntityPlayerMP) ((BattleParticipant) playerParticipant).getEntity();
 
                 for (BattleParticipant p2 : battle.participants) {
-                    if (p2 != p) {
+                    if (p2 != playerParticipant) {
                         PixelmonWrapper pix = p2.allPokemon[0];
                         PlayerPartyStorage storage = Pixelmon.storageManager.getParty(player.func_110124_au());
                         if (!Pixelmon.EVENT_BUS.post(new PokedexEvent(player.func_110124_au(), pix.pokemon, EnumPokedexRegisterStatus.seen, "pokedexKey"))) {

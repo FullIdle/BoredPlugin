@@ -8,13 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Getter
 @Setter
 public class OfflineAI extends TacticalAI {
     private MoveChoice ToBeUsedMoveChoice;
-    private UUID UUIDToBeSelected;
     public OfflineAI(BattleParticipant participant) {
         super(participant);
     }
@@ -24,13 +22,6 @@ public class OfflineAI extends TacticalAI {
         MoveChoice cho = ToBeUsedMoveChoice;
         ToBeUsedMoveChoice = null;
         return cho;
-    }
-
-    @Override
-    public UUID getNextSwitch(PixelmonWrapper pixelmonWrapper) {
-        UUID uuid = UUIDToBeSelected;
-        UUIDToBeSelected = null;
-        return uuid;
     }
 
     public ArrayList<MoveChoice> getACho(PixelmonWrapper pw) {
