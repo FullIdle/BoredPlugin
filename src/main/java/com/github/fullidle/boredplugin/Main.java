@@ -5,12 +5,10 @@ import com.github.fullidle.boredplugin.util.FileUtil;
 import com.github.fullidle.boredplugin.util.MethodUtil;
 import com.github.fullidle.boredplugin.util.SubPluginUtil;
 import lombok.SneakyThrows;
-import lombok.val;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.jar.JarEntry;
 
 public class Main extends FiPlugin {
@@ -24,6 +22,7 @@ public class Main extends FiPlugin {
         ArrayList<JarEntry> jarEntries = MethodUtil.getJarFileResourceName(getFile(),"com/github/fullidle/boredplugin",".class");
         for (JarEntry jarEntry : jarEntries) {
             String name = jarEntry.getName();
+            System.out.println(name);
             String className = name.substring(0, name.lastIndexOf(".")).replace("/", ".");
             if (!className.equalsIgnoreCase("module-info")) {
                 Class<?> aClass = Class.forName(className);
@@ -47,10 +46,6 @@ public class Main extends FiPlugin {
         for (CommonData.SubPlugin value : CommonData.SubPlugin.values()) {
             getLogger().info("§3"+value.getName());
         }
-        for (Map.Entry<String, File> entry : CommonData.SubPlugin.MC9YLOGIN.getFiles().entrySet()) {
-            System.out.println(entry.getKey());
-            System.out.println(entry.getValue().getName());
-        }
         /*执行enable()*/
         for (SubPluginUtil util : subPluginUtils) {
             util.onEnable();
@@ -65,21 +60,21 @@ public class Main extends FiPlugin {
         /*<清理所有数据>*/
         FileUtil.ALL_DATA.clear();
         /*<原插件config>*/
-        val jarFileResourceName = MethodUtil.getJarFileResourceName(getFile(),null,".yml");
+        final ArrayList<JarEntry> jarFileResourceName = MethodUtil.getJarFileResourceName(getFile(),null,".yml");
         System.out.println("§3======="+jarFileResourceName.size());
         for (JarEntry jarEntry : jarFileResourceName) {
-            var name = jarEntry.getName();
+            String name = jarEntry.getName();
             saveResource(name,false);
-            var file = new File(getDataFolder(), name);
+            File file = new File(getDataFolder(), name);
             name = file.getName();
-            val split = name.split("-");
-            val subPluginName = split[0].replace("-","");
-            var fileName = (String)null;
+            String[] split = name.split("-");
+            String subPluginName = split[0].replace("-","");
+            String fileName = null;
             if (split.length > 1) {
                 fileName = split[1].replace("-", "");
             }
 
-            var subPlugin = (CommonData.SubPlugin)null;
+            CommonData.SubPlugin subPlugin = null;
 
             try {
                 subPlugin = CommonData.SubPlugin.valueOf(subPluginName.toUpperCase());

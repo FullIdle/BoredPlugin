@@ -9,18 +9,21 @@ import com.pixelmonmod.pixelmon.api.registries.PixelmonSpecies;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.github.fullidle.boredplugin.pokeclear.Data.*;
 
 @SubPlugin(enable = "register")
 public class Main extends FiPlugin {
-    public static String cmdName = "pokeclear";
+    public static List<String> cmdName = List.of("pokeclear");
     public void onEnable() {
         register();
     }
     public static void register(){
         FiPlugin plugin = CommonData.getMainPlugin();
         plugin.saveDefaultConfig();
-        plugin.onRegisterCommand(plugin,"pokeclear");
+        plugin.onRegisterCommand(plugin,new ArrayList<>(cmdName));
         FileUtil fileUtil = plugin.getConfig(CommonData.SubPlugin.POKECLEAR, "config.yml");
         FileConfiguration config = fileUtil.getConfiguration();
         world = config.getStringList("world");
@@ -31,7 +34,7 @@ public class Main extends FiPlugin {
             waitClear = new WaitClear(CommonData.getMainPlugin());
         }
 
-        plugin.getCommand(cmdName).setExecutor(new CMD());
+        plugin.getCommand(cmdName.get(0)).setExecutor(new CMD());
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, AD::new);
         for (Species species : PixelmonSpecies.getAll()) {

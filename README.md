@@ -17,6 +17,7 @@
   - [x] 无技能对战
   - [x] 无技能巢穴对战(与上面有所不同,处理方式不同)
 - [x] CommandAll —— 为所有在线玩家执行命令(支持占位符)
+- [x] StorageBag —— 收纳袋(自定义物品,自定义空间,可以套娃)
 - [ ] 更多功能
 ## 一些无聊的示例
 <https://github.com/FullIdle/BoredPlugin/tree/master/SomeExample>
@@ -63,6 +64,19 @@ player_level: 'player.getPlayer().getLevel();' #custompapi_player_level 由于�
 ### PokeClear —— 清理神奇宝贝
 插件原地址: <https://bbs.mc9y.net/resources/178>
 完全就是复刻过来的，所以教程直接去看原地址就好了
+### StorageBag —— 收纳袋
+教程看只能就能会,用记得重载就好.
+```yaml
+message:
+  help:
+    - 'help的提示待自行配置,我懒得搞!'
+    - 'help 顾名思义'
+    - 'give [player] [id] 给与玩家指定的物品'
+    - 'rename [name] 修改手上收纳袋的名字'
+    - 'upload [id] [row(有多少行)] 上传手上的物品做收纳袋的外观(添加了记得重载reload重载!)'
+    - 'check 显示所有上传了的物品id(检擦是否加载用,没有就reload)'
+    - 'reload 重载配置'
+```
 ## 构建
 #单独构建: ``` clean :<SubProject>:shadowJar ```
 #完整构建: ```clean isRoot shadowJar```

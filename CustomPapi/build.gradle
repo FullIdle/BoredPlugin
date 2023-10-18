@@ -3,8 +3,10 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-sourceCompatibility = 1.8
-sourceCompatibility = 1.8
+java {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
 
 group = 'com.github.fullidle.boredplugin.custompapi.Main'
 version = '1.0'

@@ -18,7 +18,8 @@ public class CommonData {
         BIOPROMPT("BioPrompt"),
         BOREDPLUGIN("BoredPlugin"),
         CUSTOMPAPI("CustomPapi"),
-        POKECLEAR("PokeClear");
+        POKECLEAR("PokeClear"),
+        STORAGEBAG("StorageBag");
         private final String name;
         private final Map<String,File> files = new HashMap<>();
         SubPlugin(String name){

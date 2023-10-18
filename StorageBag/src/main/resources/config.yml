@@ -1,0 +1,24 @@
+itemsID:
+defaultBagName: '&6收纳袋'
+AutomaticallyUpdateLore: true #自动更新lore的名字这样就能显示出收纳袋中部分的物品
+
+message:
+  help:
+    - 'help的提示待自行配置,我懒得搞!'
+    - 'help 顾名思义'
+    - 'give [player] [id] 给与玩家指定的物品'
+    - 'rename [name] 修改手上收纳袋的名字'
+    - 'upload [id] [row(有多少行)] 上传手上的物品做收纳袋的外观(添加了记得重载reload重载!)'
+    - 'check 显示所有上传了的物品id(检擦是否加载用,没有就reload)'
+    - 'reload 重载配置'
+  msg:
+    PlayerIsNotOnline: '&c没有这个玩家!'
+    NotEnoughSpaceInBackpack: '&c背包空间不足物品掉落与地上'
+    TipsForSuccess: '&a成功!'
+    NonPlayerExecution: '&c非玩家执行!'
+    NonStorageBag: '&c手上的物品非收纳袋啊!'
+    NonNumeric: '&c参数非数字!'
+    ReloadReminder: '&a记得重载!'
+    ThisItemCannotBeAdded: '&c该物品无法添加'
+
+itemList:

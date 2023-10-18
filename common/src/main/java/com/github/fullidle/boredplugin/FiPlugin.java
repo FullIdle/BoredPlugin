@@ -13,20 +13,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class FiPlugin extends JavaPlugin {
+    @SafeVarargs
     @SneakyThrows
-    public void onRegisterCommand(FiPlugin plugin,String... commandsName){
-        if (commandsName == null)return;
+    public final void onRegisterCommand(FiPlugin plugin, ArrayList<String>... commandsAndAliases){
         Field commandMapF = SimplePluginManager.class.getDeclaredField("commandMap");
         commandMapF.setAccessible(true);
         CommandMap commandMap = (CommandMap) commandMapF.get(Bukkit.getServer().getPluginManager());
         Constructor<PluginCommand> constructor = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
         constructor.setAccessible(true);
-        for (String s : commandsName) {
-            PluginCommand cmd = constructor.newInstance(s, plugin);
-            commandMap.register(s,cmd);
+        for (ArrayList<String> s : commandsAndAliases) {
+            String cmdName = s.get(0);
+            PluginCommand cmd = constructor.newInstance(cmdName, plugin);
+            s.remove(cmdName);
+            cmd.setAliases(s);
+            commandMap.register(cmdName,cmd);
         }
     }
 

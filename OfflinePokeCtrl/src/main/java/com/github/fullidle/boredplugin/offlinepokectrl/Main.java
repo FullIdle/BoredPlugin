@@ -5,6 +5,9 @@ import com.github.fullidle.boredplugin.SubPlugin;
 import com.github.fullidle.boredplugin.offlinepokectrl.command.SelectSkillsCmd;
 import com.github.fullidle.boredplugin.offlinepokectrl.command.StartBattleCmd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SubPlugin
 public class Main extends FiPlugin {
     public static FiPlugin plugin;
@@ -20,7 +23,7 @@ public class Main extends FiPlugin {
         Main.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(new PlayerListener(),plugin);
 
-        plugin.onRegisterCommand(plugin,"startbattletest","selectskilltest");
+        plugin.onRegisterCommand(plugin, new ArrayList<>(List.of("startbattletest")), new ArrayList<>(List.of("selectskilltest")));
         plugin.getCommand("startbattletest").setExecutor(new StartBattleCmd());
         plugin.getCommand("selectskilltest").setExecutor(new SelectSkillsCmd());
     }

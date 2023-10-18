@@ -5,9 +5,6 @@ plugins {
     id 'idea'
 }
 
-sourceCompatibility = 1.17
-sourceCompatibility = 1.17
-
 group = 'com.github.fullidle.boredplugin.pokeclear.Main'
 version = '1.0'
 

@@ -7,4 +7,5 @@ include 'PokeClear'
 include 'FIFix'
 include 'CommandAll'
 include 'OfflinePokeCtrl'
+include 'StorageBag'
 

@@ -1,0 +1,3 @@
+name: StorageBag
+main: ${group}
+version: ${version}

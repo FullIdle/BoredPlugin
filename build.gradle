@@ -5,8 +5,11 @@ plugins {
     id 'idea'
 }
 
-sourceCompatibility = 1.17
-sourceCompatibility = 1.17
+/*待处理成多任务*/
+java {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
 
 group = 'com.github.fullidle.boredplugin.Main'
 version = '1.0'
@@ -25,6 +28,7 @@ dependencies {
     implementation project(path: ':CustomPapi')
     implementation project(path: ':CommandAll')
     implementation project(path: ':OfflinePokeCtrl')
+    implementation project(path: ':StorageBag')
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'

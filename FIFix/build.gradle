@@ -2,7 +2,10 @@ plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow'
 }
-
+java {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
 group = 'com.github.fullidle.boredplugin.fifix.Main'
 version = '1.0'
 
