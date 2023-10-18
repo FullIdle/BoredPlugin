@@ -36,8 +36,11 @@ public class MyPapi extends PlaceholderExpansion {
         if (code != null){
             ScriptEngine js = Main.scriptEngineManager.getEngineByName("nashorn");
             Bindings bindings = js.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
+
+            /*<==传入的数据==>*/
             bindings.put("player",player);
             bindings.put("params",params);
+            /*<==-==-==-==>*/
             String result = String.valueOf(js.eval(code));
             bindings.clear();
             return result;

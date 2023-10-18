@@ -31,14 +31,14 @@ jobs:
       - name: shadowJar
         run: |
           ./gradlew isRoot shadowJar
-          ./gradlew clean :CustomPapi:shadowJar
-          ./gradlew clean :Mc9yLogin:shadowJar
-          ./gradlew clean :BioPrompt:shadowJar
-          ./gradlew clean :PokeClear:shadowJar
-          ./gradlew clean:FIFix:shadowJar
-          ./gradlew clean :CommandAll:shadowJar
-          ./gradlew clean :OfflinePokeCtrl:shadowJar
-          ./gradlew clean :StorageBag:shadowJar
+          ./gradlew :CustomPapi:shadowJar
+          ./gradlew :Mc9yLogin:shadowJar
+          ./gradlew :BioPrompt:shadowJar
+          ./gradlew :PokeClear:shadowJar
+          ./gradlew :FIFix:shadowJar
+          ./gradlew :CommandAll:shadowJar
+          ./gradlew :OfflinePokeCtrl:shadowJar
+          ./gradlew :StorageBag:shadowJar
 
       - name: uploadFiles
         uses: actions/upload-artifact@v3

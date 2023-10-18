@@ -8,4 +8,5 @@ include 'FIFix'
 include 'CommandAll'
 include 'OfflinePokeCtrl'
 include 'StorageBag'
+include 'FIMissionSystem'
 
