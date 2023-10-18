@@ -37,6 +37,7 @@ jobs:
           ./gradlew clean :PokeClear:shadowJar
           ./gradlew clean:FIFix:shadowJar
           ./gradlew clean :CommandAll:shadowJar
+          ./gradlew clean :OfflinePokeCtrl:shadowJar
           ./gradlew clean :StorageBag:shadowJar
 
       - name: uploadFiles
@@ -51,4 +52,5 @@ jobs:
             PokeClear/build/libs/*.jar
             FIFix/build/libs/*.jar
             CommandAll/build/libs/*.jar
+            OfflinePokeCtrl/build/libs/*.jar
             StorageBag/build/libs/*.jar
