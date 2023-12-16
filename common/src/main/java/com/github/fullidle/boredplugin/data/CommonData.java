@@ -19,7 +19,9 @@ public class CommonData {
         BOREDPLUGIN("BoredPlugin"),
         CUSTOMPAPI("CustomPapi"),
         POKECLEAR("PokeClear"),
-        STORAGEBAG("StorageBag");
+        STORAGEBAG("StorageBag"),
+        FIMISSIONSYSTEM("FIMissionSystem");
+
         private final String name;
         private final Map<String,File> files = new HashMap<>();
         SubPlugin(String name){

@@ -23,7 +23,6 @@ dependencies {
     implementation project(path: ':common')
     implementation project(path: ':BioPrompt')
     implementation project(path: ':Mc9yLogin')
-    implementation project(path: ':PokeClear')
     implementation project(path: ':FIFix')
     implementation project(path: ':CustomPapi')
     implementation project(path: ':CommandAll')

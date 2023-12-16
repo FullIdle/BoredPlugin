@@ -1,0 +1,14 @@
+name: 'FILPWhitelist'
+main: 'me.fullidle.filpwhitelist.filpwhitelist.Main'
+version: 1.0
+depend:
+  - 'LuckPerms'
+  - 'PlaceholderAPI'
+commands:
+  filpwhitelist:
+    description: MainCMD
+    aliases: [filplist,filpwl]
+permissions:
+  filpwhitelist.reload:
+    description: reload permission
+    default: op
